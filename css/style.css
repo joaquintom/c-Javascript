@@ -1,0 +1,78 @@
+.classTitulo{
+    font-size: 28px;
+    padding: 10px;
+}
+
+#titulo1{
+    text-align: center;
+}
+
+.productosArray{
+    background-color: rgb(196, 196, 196);
+    border: 15px;
+    font-size: 21px;
+}
+
+#inputTexto {
+
+    margin: 10px;
+}
+
+#divProductos{
+    margin: 5px;
+}
+
+.barra{
+    background-color: #000;
+    padding-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+#botonMostrar{
+   
+    background-color: #000;
+    margin: 3px; 
+}
+
+.card{
+    display:flex;
+    align-items: center;
+    margin: 20px;
+}
+
+.menuProductos{
+    padding-top:5px;
+    padding-bottom: 5px;
+}
+
+nav{
+        padding:20px;
+
+}
+/* 
+style formulario
+body {
+
+    background: -webkit-linear-gradient(to right, #B06AB3, #4568DC);
+    background: linear-gradient(to right, #B06AB3, #4568DC);
+   
+}
+
+
+#idForm {
+   
+        background: #fff;
+        padding: 40px;
+        box-shadow: 0 0 6px 0 rgba(255, 255, 255, 0.8);
+        border-radius: 10px;
+       
+}
+
+.classForm{
+    width: 100%;
+    margin: auto;
+}
+
+*/
