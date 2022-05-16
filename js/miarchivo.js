@@ -106,7 +106,7 @@ const productos = [
                           <h3 class="card-title">${producto.instrumento}</h3>
                               <h5 class="card-title">${producto.marca}</h5>
                               <p class="card-text">$${producto.valor}</p>
-                              <button id="eliminar${producto.id}" class="btn btn-dark"> Eliminar</button>
+                              
                           </div>
                       </div>
                       `;
@@ -125,7 +125,7 @@ const productos = [
               <h5 class="card-title">${producto.marca}</h5>
               <p class="card-text">$${producto.valor}</p>
                       
-                      <button id="eliminar${producto.id}" class="btn btn-dark"> Eliminar</button>
+                     
                   </div>
               </div>
           
