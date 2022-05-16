@@ -77,11 +77,7 @@ const productos = [
   items.addEventListener("keyup", filtrar);
   
   filtrar();
-  
-  //botonCarrito: agregar al carrito
-  //botonMostrar: carrito
-  // const items = divProductos
-  
+    
   //carrito
   productos.forEach((producto) => {
     document
@@ -98,39 +94,32 @@ const productos = [
     document
       .getElementById(`botonCarrito${producto.id}`)
       .addEventListener("click", () => {
-        if (carrito.includes(producto)) {
-        } else {
           chango.innerHTML += `
                           <div class="card" id="producto${producto.id}"style="width: 18rem;">
                           <div class="card-body">
                           <h3 class="card-title">${producto.instrumento}</h3>
                               <h5 class="card-title">${producto.marca}</h5>
-                              <p class="card-text">$${producto.valor}</p>
-                              
+                              <p class="card-text">$${producto.valor}</p>                        
                           </div>
                       </div>
                       `;
-        }
       });
   });
-  
-  //offcanva localstorage
-  document.getElementById("botonMostrar").addEventListener("click", () => {
-    carrito.forEach((producto) => {
+ 
+  // Productos offcanva localstorage
+  document.getElementById("botonMostrar")
+  let carritoStorage = JSON.parse(localStorage.getItem("carrito"))
+  carritoStorage.forEach(producto => {
       chango.innerHTML += ` 
-          
-          <div class="card" id="producto${producto.id}"style="width: 18rem;">
-          <div class="card-body">
-          <h3 class="card-title">${producto.instrumento}</h3>
-              <h5 class="card-title">${producto.marca}</h5>
-              <p class="card-text">$${producto.valor}</p>
-                      
-                     
+      <div class="card" id="producto ${producto.id}"style="width: 18rem;">
+      <div class="card-body">
+      <h3 class="card-title">${producto.instrumento}</h3>
+          <h5 class="card-title">Marca: ${producto.marca}</h5>
+          <p class="card-text">Precio: $${producto.valor}</p>
                   </div>
-              </div>
-          
-          `;
-    });
-  });
-  
+          </div>
+      `;
+  })
+
+      
 
