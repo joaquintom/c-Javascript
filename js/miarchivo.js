@@ -221,7 +221,7 @@ searchLetters.addEventListener("click", (e) => {
 })
 
 function callApiSong(artista, cancion){
-    fetch('https://api.lyrics.ovh/v1/_blank${artista}/${cancion}')
+    fetch('https://api.lyrics.ovh/v1/${artista}/${cancion}')
         .then(respuesta => respuesta.json())
         .then(resultado => {
             //console.log(resultado);
