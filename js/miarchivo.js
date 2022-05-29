@@ -31,13 +31,6 @@ const botonB = document.querySelector("#botonBuscar");
 const items = document.querySelector("#divProductos");
 
 
-const sideLetters = document.querySelector(".side-right");
-const sideLeft = document.querySelector(".side-left");
-const searchLetters = document.querySelector(".search-letters");
-
-const artista = document.querySelector(".artist");
-const cancion = document.querySelector(".song");
-
 let carrito = [];
 
 // operador ternario:
@@ -207,6 +200,95 @@ const nValor = carrito.reduce((nIngreso, {cantidad, valor}) => nIngreso + cantid
     })
 
 
+
+
+// api
+
+const letrasCanciones = document.getElementById("letraCancion")
+const container = document.getElementById("containerApi")
+
+const artista = document.getElementById("artistaEleccion")
+const cancion = document.getElementById("cancionEleccion")
+const btnbuscar = document.getElementById("buscarTemas")
+const errorMensaje = document.getElementById("mensajeError")
+
+
+btnbuscar.addEventListener("click", (e) =>{
+  e.preventDefault();
+console.log(artista.value);
+console.log(cancion.value);
+
+errorMensaje.innerHTML =""
+
+if (artista.value === "" || cancion.value === "") {
+  errorMensaje.innerHTML += `
+  <p>Por favor, llene los campos solicitados.</p>
+  `;
+
+}
+llamarApi(artista.value, cancion.value);
+})
+
+function llamarApi(artista, cancion){
+fetch(`https://api.lyrics.ovh/v1/${artista}/${cancion}`)
+.then(response => response.json)
+.then(data =>{
+  console.log(data)
+
+})
+
+}
+
+/*
+buscarLetras.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    if (artista.value === "" || temas.value === "") {
+        mostrarError("Ambos campos son obligatorios...");
+        return;
+    }
+
+    llamarApiSong(artista.value, temas.value);
+})
+
+function llamarApiSong(artista, temas){
+    fetch('https://api.lyrics.ovh/v1/${artista}/${temas}')
+        .then(response => response.json())
+        .then(resultado => {
+            //console.log(resultado);
+            if (resultado.lyrics) {
+                const {lyrics} = resultado;
+                mostrarLetra(lyrics);
+            } else {
+                mostrarError("El tema no existe...");
+            }
+        })
+        .catch(error => console.log(error));
+}
+
+function mostrarLetra(lyrics){
+    canciones.innerHTML = "";
+    const titulo = document.createElement("h3");
+    titulo.innerText = `${temas.value} de: ${artista.value}`;
+    canciones.appendChild(titulo);
+
+    const letra = document.createElement("p");
+    letra.innerText = lyrics;
+    canciones.appendChild(letra);
+}
+
+function mostrarError(mensaje){
+    const error = document.createElement("p");
+    error.classList.add("error-mensaje");
+    error.innerText = mensaje;
+
+    coversMusica.appendChild(error);
+    setTimeout(() => {
+        error.remove();
+    }, 2000);
+}
+
+*/
 
 
 
