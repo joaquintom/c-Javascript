@@ -21,6 +21,7 @@ const productos = [
 ];
 
 
+
 //Dom
 let titulo1 = document.getElementById("titulo1");
 let divTitulo = document.getElementById("divTitulo");
@@ -28,6 +29,14 @@ let divTitulo = document.getElementById("divTitulo");
 const buscador = document.querySelector("#inputBuscador");
 const botonB = document.querySelector("#botonBuscar");
 const items = document.querySelector("#divProductos");
+
+
+const sideLetters = document.querySelector(".side-right");
+const sideLeft = document.querySelector(".side-left");
+const searchLetters = document.querySelector(".search-letters");
+
+const artista = document.querySelector(".artist");
+const cancion = document.querySelector(".song");
 
 let carrito = [];
 
@@ -41,6 +50,7 @@ titulo1.innerText = "Instrumentos";
 
 //buscador
 const filtrar = () => {
+  
   items.innerHTML = "";
   const texto = buscador.value.toLowerCase();
   for (let producto of productos) {
@@ -65,7 +75,9 @@ const filtrar = () => {
     items.innerHTML += `
           <p class="noEncontrado"> <strong>Producto no encontrado</strong>, podés seguir buscando :)</p>
           `;
+          
   }
+
 };
 
 buscador.addEventListener("input", filtrar);
@@ -75,33 +87,7 @@ items.addEventListener("keyup", filtrar);
 filtrar();
 
 
-
-/* Proximos pasos
-//botonBateria
-const botonBateria = document.getElementById("btnBateria")
-
-  if (instrumento == "Bateria") {
-    items.innerHTML = ` 
-            <div class="card" id="producto${producto.id}"style="width: 18rem;">
-                <div class="card-body">
-                <h3 class="card-title">${producto.instrumento}</h3>
-                    <h5 class="card-title">${producto.marca}</h5>
-                    <p class="card-text">$${producto.valor}</p>
-                    
-                    <button id="botonCarrito${producto.id}" class="btn btn-dark"> Agregar al carrito</button>
-                </div>
-            </div>
-            
-            `;
-  }
-
-botonBateria.addEventListener("click", filtrar);
-*/
-
-
-
-
-
+ 
 //agregarAlCarrito
 productos.forEach((producto) => {
   document
@@ -141,6 +127,7 @@ productos.forEach((producto) => {
 
       localStorage.setItem("carrito", JSON.stringify(carrito));
     });
+    
 });
 
 
@@ -218,6 +205,58 @@ const nValor = carrito.reduce((nIngreso, {cantidad, valor}) => nIngreso + cantid
       localStorage.setItem("carrito", JSON.stringify(carrito));
       abrirCarrito()
     })
+
+
+
+searchLetters.addEventListener("click", (e) => {
+    e.preventDefault();
+    //console.log(artista.value);
+    //console.log(cancion.value);
+    if (artista.value === "" || cancion.value === "") {
+        mostrarError("Ambos campos son obligatorios...");
+        return;
+    }
+
+    callApiSong(artista.value, cancion.value);
+})
+
+function callApiSong(artista, cancion){
+    fetch('https://api.lyrics.ovh/v1/${artista}/${cancion}')
+        .then(respuesta => respuesta.json())
+        .then(resultado => {
+            //console.log(resultado);
+            if (resultado.lyrics) {
+                const {lyrics} = resultado;
+                mostrarLetra(lyrics);
+            } else {
+                mostrarError("La cancion no existe...");
+            }
+        })
+        .catch(error => console.log(error));
+}
+
+function mostrarLetra(lyrics){
+    sideLetters.innerHTML = "";
+    const title = document.createElement("h3");
+    title.innerText = `${cancion.value} de: ${artista.value}`;
+    sideLetters.appendChild(title);
+
+    const letra = document.createElement("p");
+    letra.innerText = lyrics;
+    sideLetters.appendChild(letra);
+}
+
+function mostrarError(mensaje){
+    const error = document.createElement("p");
+    error.classList.add("error-mensaje");
+    error.innerText = mensaje;
+
+    sideLeft.appendChild(error);
+    setTimeout(() => {
+        error.remove();
+    }, 2000);
+}
+
 
 
 
