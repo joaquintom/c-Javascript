@@ -234,10 +234,25 @@ fetch(`https://api.lyrics.ovh/v1/${artista}/${cancion}`)
 .then(response => response.json)
 .then(data =>{
   console.log(data)
+  if(data.lyrics){
+    const {lyrics} = data;
+    mostrarCancion(lyrics);
+  }else{
+    errorMensaje.innerHTML += `
+  <p>La canción no existe.</p>
+  `;
+  }
 
 })
-
+  .catch(error => console.log(error))
 }
+
+  function mostrarCancion(lyrics){
+    letraMostrar.innerHTML ="";
+    const letraMostrar = document.getElementById("letra")
+    letraMostrar.innerText = lyrics;
+    letrasCanciones.appendChild(letraMostrar)
+  }
 
 /*
 buscarLetras.addEventListener("click", (e) => {

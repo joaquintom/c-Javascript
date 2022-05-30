@@ -70,3 +70,13 @@ padding: 20px;
 
 }
 
+
+.buscadorCanciones{
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+
+    padding: 20px;
+    background-color: rgb(209, 209, 209);
+   
+}
