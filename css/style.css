@@ -1,9 +1,12 @@
-
+body{
+    
+    font-family: Arial, Helvetica, sans-serif;
+}
 
 #titulo1{
     text-align: center;
     font-size: 36px;
-    background-color: rgba(240, 239, 239, 0.87);
+    background-color: rgba(209, 209, 209, 0.87);
     padding: 30px;
 }
 
@@ -15,6 +18,7 @@
     align-items: center;
     width: 100%;
 }
+
 
 .noEncontrado{
     display: flex;
@@ -32,7 +36,7 @@
     justify-content: center;
     align-items: center;
     margin: 10px;
-   border: 2px solid rgba(0,0,0,.125);
+     border: 2px solid rgba(0,0,0,.125);
 }
 
 
@@ -42,27 +46,9 @@
 }
 
 
-
 .menuProductos{
     padding-top:5px;
     padding-bottom: 5px;
-}
-
-#precioTotal{
-    display:flex;
-    justify-content: left;
-    align-items: center;
-
-    font-size: 18px;
-    padding: 10px;
-    border: 5px;
-}
-
-
-#btnDentroCarrito{
-display: flex;
-padding: 20px;
-
 }
 
 #fondoCarritoBtn{
@@ -70,7 +56,48 @@ padding: 20px;
 
 }
 
+#precioTotal{
+    display:flex;
+    justify-content: center;
+    align-items: center;
 
+    font-size: 18px;
+    padding-top: 10px;
+   margin: 5px;
+}
+
+.agregarProductos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 16px;
+    margin: 5px;
+    
+}
+
+
+#btnDentroCarrito{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 15px;
+
+}
+
+#btnVaciarCarrito{
+    display: flex;
+    margin: 5px;
+}
+
+#btnFinalizarCompra{
+    display: flex;
+    margin: 5px;
+}
+
+
+
+
+/*api canciones*/
 .buscadorCanciones{
     display: flex;
     justify-content:space-around;
