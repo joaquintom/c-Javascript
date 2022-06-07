@@ -98,12 +98,52 @@ body{
 
 
 /*api canciones*/
-.buscadorCanciones{
+
+#tituloApi{
     display: flex;
-    justify-content:space-around;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    text-align: center;
+    padding: 20px;
+    margin: 5px;
+}
+
+
+#buscadorCanciones{
+    display: flex;
+    justify-content:center;
     align-items: center;
 
-    padding: 20px;
-    background-color: rgb(209, 209, 209);
+    padding-bottom: 15px;
    
+}
+
+#mensajeError{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    margin: 10px;
+    font-size: 18px;
+    text-align: center;
+}
+
+#letraCancion{
+    display: flex;
+    justify-content: center;
+    
+    background-color: beige;
+}
+
+#letra{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    margin: 10px;
+    font-size: 18px;
+    text-align: center;
+
 }

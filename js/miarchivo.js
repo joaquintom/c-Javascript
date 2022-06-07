@@ -30,6 +30,19 @@ const buscador = document.querySelector("#inputBuscador");
 const botonB = document.querySelector("#botonBuscar");
 const items = document.querySelector("#divProductos");
 
+// Btn Finalizar Compra
+const avisoCarrito = document.querySelector(".agregarProductos")
+const btnFinCompra = document.getElementById("btnFinalizarCompra")
+
+// Api canciones 
+const letrasCanciones = document.getElementById("letraCancion")
+const container = document.getElementById("containerApi")
+
+const artista = document.getElementById("artistaEleccion")
+const cancion = document.getElementById("cancionEleccion")
+const btnbuscar = document.getElementById("buscarTemas")
+const errorMensaje = document.getElementById("mensajeError")
+
 
 let carrito = [];
 
@@ -45,7 +58,6 @@ titulo1.innerText = "Tienda de instrumentos";
 
 //Buscador
 const filtrar = () => {
-  
   items.innerHTML = "";
     const texto = buscador.value.toLowerCase();
        for (let producto of productos) {
@@ -115,7 +127,7 @@ productos.forEach((producto) => {
                    return productoCarrito
        
          })} else {
-// Si no exite, agregamos el producto al carrito Y le agregamos la key cantidad con el valor 1
+  // Si no exite, agregamos el producto al carrito Y le agregamos la key cantidad con el valor 1
   const nuevoProducto = { ...producto, cantidad: 1 }
             carrito.push(nuevoProducto);
       }
@@ -124,7 +136,7 @@ productos.forEach((producto) => {
 });
 
 
-//Eliminar Producto Carrito
+  //Eliminar Producto Carrito
   const chango = document.getElementById("offCanvaCarrito");
     function borrarProducto(idAEliminar) {
       carrito = carrito.filter(producto => {
@@ -138,7 +150,7 @@ productos.forEach((producto) => {
   }
 
 
-// Carrito
+  // Carrito
   const abrirCarrito = () => {
       chango.innerHTML = '';
         carrito.forEach(producto => {
@@ -150,7 +162,7 @@ productos.forEach((producto) => {
                         <h5 class="card-title">Marca: ${producto.marca}</h5>
                           <p class="card-text">Precio: $${producto.valor}</p>
                             <p class="card-text">Cantidad: ${producto.cantidad}</p>
-                              <button id="btnVaciarCarrito${producto.id}" class="btn btn-dark"> Eliminar</button> 
+                      <button id="btnVaciarCarrito${producto.id}" class="btn btn-dark"> Eliminar</button> 
                 </div>
         </div>
         `;
@@ -220,9 +232,6 @@ productos.forEach((producto) => {
 
 
 // Btn Finalizar Compra
-    const avisoCarrito = document.querySelector(".agregarProductos")
-    const btnFinCompra = document.getElementById("btnFinalizarCompra")
-
      btnFinCompra.addEventListener("click", () => {
      
         
@@ -234,8 +243,8 @@ productos.forEach((producto) => {
     // Si hay productos en el carrito finaliza la compra.
         Swal.fire({
         icon: 'sucess',
-        title: '¡Gracias por su compra!',
-    
+        title: '¡Gracias por su compra! ',
+            
       })
 
       chango.innerHTML = `
@@ -253,15 +262,7 @@ productos.forEach((producto) => {
 
 // Api canciones 
 
-const letrasCanciones = document.getElementById("letraCancion")
-const container = document.getElementById("containerApi")
-
-const artista = document.getElementById("artistaEleccion")
-const cancion = document.getElementById("cancionEleccion")
-const btnbuscar = document.getElementById("buscarTemas")
-const errorMensaje = document.getElementById("mensajeError")
-
-
+// Ingresar un artista
 btnbuscar.addEventListener("click", (e) =>{
     e.preventDefault();
       console.log(artista.value);
@@ -274,36 +275,40 @@ btnbuscar.addEventListener("click", (e) =>{
         <p>Por favor, llene los campos solicitados.</p>
       `;
     }
-        llamarApi(artista.value, cancion.value);
+        llamarApi();
 })
 
-function llamarApi(artista, cancion){
-    fetch(`https://api.lyrics.ovh/v1/${artista}/${cancion}`)
-    .then(response => response.json)
-      .then(data =>{
-          console.log(data)
-  
-    if(data.lyrics){
+
+
+function llamarApi(){
+  //https://api.lyrics.ovh/v1/artist/title (asi figura la api pero no me lo toma, asi que le puse como artista coldplay y una canción) https://lyricsovh.docs.apiary.io/#reference/0/lyrics-of-a-song/search
+  fetch('https://api.lyrics.ovh/v1/Coldplay/Adventure%20of%20a%20Lifetime') 
+  .then(response => response.json())
+    .then(data =>{
+        console.log(data)
+
+     if(data.lyrics){
         const {lyrics} = data;
-      mostrarCancion(lyrics);
+        mostrarCancion(lyrics);
     }else{
-    
-      errorMensaje.innerHTML += `
-  <p>La canción no existe.</p>
-  `;
-  }
+  
+    errorMensaje.innerHTML += `
+       <p>La canción no aparece.</p>
+      `;
+    }
 
 })
- 
-    .catch(error => console.log(error))
+   .catch(error => console.log(error))
 }
 
+
+// Mostrar la canción 
 function mostrarCancion(lyrics){
+  const letraMostrar = document.getElementById("letra")
       letraMostrar.innerHTML ="";
-        const letraMostrar = document.getElementById("letra")
+
           letraMostrar.innerText = lyrics;
             letrasCanciones.appendChild(letraMostrar)
   }
-
 
 
