@@ -67,20 +67,19 @@ const filtrar = () => {
                     <div class="card" id="producto${producto.id}"style="width: 18rem;">
                     <img src="${producto.imagen}" class="card-img-top" alt="...">
                     <div class="card-body">
-                    <h3 class="card-title">${producto.instrumento}</h3>
-                      <h5 class="card-title">${producto.marca}</h5>
-                      <p class="card-text">$${producto.valor}</p>
-                      
-                      <button id="botonCarrito${producto.id}" class="btn btn-dark"> Agregar al carrito</button>
-                  </div>
-              </div>
+                     <h3 class="card-title">${producto.instrumento}</h3>
+                        <h5 class="card-title">${producto.marca}</h5>
+                          <p class="card-text">$${producto.valor}</p>
+                    <button id="botonCarrito${producto.id}" class="btn btn-dark"> Agregar al carrito</button>
+                </div>
+            </div>
           `;
     }
   }
 
         if (items.innerHTML === "") {
             items.innerHTML += `
-                      <p class="noEncontrado"> <strong>Producto no encontrado</strong>, podés seguir buscando :)</p>
+                      <p class="noEncontrado"><strong>Producto no encontrado</strong>, podés seguir buscando :)</p>
                   `;
           
          }
@@ -240,7 +239,7 @@ productos.forEach((producto) => {
           avisoCarrito.innerHTML = "";
 
         } else { 
-    // Si hay productos en el carrito finaliza la compra.
+    // Si hay productos en el carrito finaliza la compra
         Swal.fire({
         icon: 'sucess',
         title: '¡Gracias por su compra! ',
@@ -262,7 +261,7 @@ productos.forEach((producto) => {
 
 // Api canciones 
 
-// Ingresar un artista
+    // buscar datos
 btnbuscar.addEventListener("click", (e) =>{
     e.preventDefault();
       console.log(artista.value);
@@ -281,7 +280,7 @@ btnbuscar.addEventListener("click", (e) =>{
 
 
 function llamarApi(){
-  //https://api.lyrics.ovh/v1/artist/title (asi figura la api pero no me lo toma, asi que le puse como artista coldplay y una canción) https://lyricsovh.docs.apiary.io/#reference/0/lyrics-of-a-song/search
+  //https://api.lyrics.ovh/v1/artist/title => asi figura la api pero no me lo toma, asi que le puse como artista coldplay y una canción. link api: https://lyricsovh.docs.apiary.io/#reference/0/lyrics-of-a-song/search
   fetch('https://api.lyrics.ovh/v1/Coldplay/Adventure%20of%20a%20Lifetime') 
   .then(response => response.json())
     .then(data =>{
