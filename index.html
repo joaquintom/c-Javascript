@@ -107,46 +107,6 @@
 </section>
 
 
-<!-- Api Canciones -->
-<div id="tituloApi">
-   <h4>Mientras armamos tu pedido, podés ir aprendiendo las canciones!
-    <br>
-    Ingresa una banda ó artista y el nombre de la canción:</h4>
-</div>
-    
-<!-- inputs a completar-->
-<section id="buscadorCanciones" class="row-cols-lg-auto g-3 align-items-center">
-    <div id="containerApi" class="col-5">
-      <label class="visually-hidden" for="inlineFormInputGroupUsername">Artista</label>
-      <div class="input-group">
-       <div class="input-group-text"></div>
-       <input type="text" class="form-control" id="artistaEleccion" placeholder="Artista (ej: pink floyd)">
-      </div>
-    </div>
-
-   <div class="col-5">
-        <label class="visually-hidden" for="inlineFormInputGroupUsername">Canción</label>
-        <div class="input-group">
-        <div class="input-group-text"></div>
-          <input type="text" class="form-control" id="cancionEleccion" placeholder="Canción (ej: breathe)">
-        </div>
-    </div>
-<!--Boton para buscar la letra-->
-    <div class="col-2">
-      <button id="buscarTemas" type="submit" class="btn btn-primary">Buscar</button>
-    </div>
-  <!--Mensaje si la letra no existe-->
-    <p id="mensajeError"></p>
-</section>
-
-  <!--Espacio para mostrar la letra-->
-<div id="letraCancion">
-  <p id="letra"></p>
-</div>
-  
- 
-
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.14/dist/sweetalert2.all.min.js"></script>
