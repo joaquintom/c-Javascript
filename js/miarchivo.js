@@ -255,58 +255,6 @@ productos.forEach((producto) => {
 
   }    
     
-})
-
-
-// Api canciones 
-  // buscar datos    
-btnbuscar.addEventListener("click", (e) =>{
-    e.preventDefault();
-
-    const musicArtista = artista.value.toLowerCase()
-    const musicCancion = cancion.value.toLowerCase()
-
-    console.log(musicArtista);
-    console.log(musicCancion);
-
-    errorMensaje.innerHTML =""
-
-      if (musicArtista === "" || musicArtista != "pink floyd" || musicCancion === "" || musicCancion != "breathe") {
-          errorMensaje.innerHTML += `
-        <p>Por favor, ingresar datos validos.</p>
-      `;
-    } else {
-
-      llamarApi();
-    }
-})
-
-
-function llamarApi () {
-  //https://api.lyrics.ovh/v1/artist/title => asi figura la api pero no me lo toma, asi que le puse como artista pink floyd y una canción. link api: https://lyricsovh.docs.apiary.io/#reference/0/lyrics-of-a-song/search
-  fetch('https://api.lyrics.ovh/v1/pink%20floyd/breathe')
-  .then(response => response.json())
-    .then(data =>{
-        console.log(data)
-
-     if(data.lyrics){
-        const {lyrics} = data;
-        mostrarCancion(lyrics);
-    }
-
-})
-   .catch(error => console.log(error))
-}
-
-
-// Mostrar la canción 
-function mostrarCancion(lyrics){
-  const letraMostrar = document.getElementById("letra")
-      letraMostrar.innerHTML ="";
-          letraMostrar.innerText = lyrics;
-            letrasCanciones.appendChild(letraMostrar)
-  }
-
-  
+}) 
 
 
